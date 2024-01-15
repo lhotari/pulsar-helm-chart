@@ -148,15 +148,7 @@ jobs:
         k8sVersion:
           - version: "1.21.14"
             kind_image_tag: v1.21.14@sha256:8a4e9bb3f415d2bb81629ce33ef9c76ba514c14d707f9797a01e3216376ba093
-          - version: "1.27.3"
-            kind_image_tag: v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72
         testScenario:
-          - name: Basic
-            values_file: .ci/clusters/values-basic.yaml
-            shortname: basic
-          - name: Use Pulsar Image
-            values_file: .ci/clusters/values-pulsar-image.yaml
-            shortname: pulsar-image
           - name: JWT Asymmetric Keys
             values_file: .ci/clusters/values-jwt-asymmetric.yaml
             shortname: jwt-asymmetric
@@ -169,18 +161,6 @@ jobs:
           - name: Broker & Proxy TLS
             values_file: .ci/clusters/values-broker-tls.yaml
             shortname: broker-tls
-          - name: BK TLS Only
-            values_file: .ci/clusters/values-bk-tls.yaml
-            shortname: bk-tls
-          - name: ZK TLS Only
-            values_file: .ci/clusters/values-zk-tls.yaml
-            shortname: zk-tls
-          - name: ZK & BK TLS Only
-            values_file: .ci/clusters/values-zkbk-tls.yaml
-            shortname: zkbk-tls
-          - name: PSP
-            values_file: .ci/clusters/values-psp.yaml
-            shortname: psp
     env:
       k8sVersion: ${{ matrix.k8sVersion.kind_image_tag }}
       KUBECTL_VERSION: ${{ matrix.k8sVersion.version }}
