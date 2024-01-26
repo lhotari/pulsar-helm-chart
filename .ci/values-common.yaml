@@ -84,3 +84,5 @@ proxy:
 
 toolset:
   useProxy: false
+
+defaultPulsarImageTag: 3.1.2
