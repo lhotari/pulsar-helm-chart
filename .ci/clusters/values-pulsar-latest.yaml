@@ -17,4 +17,5 @@
 # under the License.
 #
 
-defaultPulsarImageTag: 3.3.0
+defaultPulsarImageRepository: lhotari/pulsar-all
+defaultPulsarImageTag: 3.3.0-nslookup
