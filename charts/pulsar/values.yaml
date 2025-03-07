@@ -1503,79 +1503,90 @@ kube-prometheus-stack:
       ## Optional: Extra labels to apply to a PVC.
       # extraPvcLabels: {}
     # Configure Pulsar dashboards for Grafana
+    # Download the kube-prometheus-stack compatible dashboards from AL 2.0 licenced repo https://github.com/lhotari/pulsar-grafana-dashboardss-stack:
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-        - name: 'pulsar'
+        - name: oxia
           orgId: 1
-          folder: 'Pulsar'
+          folder: Oxia
           type: file
           disableDeletion: false
           editable: true
+          allowUiUpdates: true
+          options:
+            path: /var/lib/grafana/dashboards/oxia
+        - name: pulsar
+          orgId: 1
+          folder: Pulsar
+          type: file
+          disableDeletion: false
+          editable: true
+          allowUiUpdates: true
           options:
             path: /var/lib/grafana/dashboards/pulsar
     dashboards:
-      # Pulsar dashboards
+      oxia:
+        oxia-containers:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-containers.json
+        oxia-coordinator:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-coordinator.json
+        oxia-golang:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-golang.json
+        oxia-grpc:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-grpc.json
+        oxia-nodes:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-nodes.json
+        oxia-overview:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-overview.json
+        oxia-shards:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/oxia/oxia-shards.json
       pulsar:
-        # Download the maintained dashboards from AL 2.0 licenced repo https://github.com/streamnative/apache-pulsar-grafana-dashboard
+        bookkeeper-compaction:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/bookkeeper-compaction.json
+        bookkeeper-read-cache:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/bookkeeper-read-cache.json
+        bookkeeper-read-use:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/bookkeeper-read-use.json
         bookkeeper:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/bookkeeper.json
-          datasource: Prometheus
-        broker:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/broker.json
-          datasource: Prometheus
-        connector_sink:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/connector_sink.json
-          datasource: Prometheus
-        connector_source:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/connector_source.json
-          datasource: Prometheus
-        container:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/container.json
-          datasource: Prometheus
-        functions:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/functions.json
-          datasource: Prometheus
-        jvm:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/jvm.json
-          datasource: Prometheus
-        loadbalance:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/loadbalance.json
-          datasource: Prometheus
-        messaging:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/messaging.json
-          datasource: Prometheus
-        node:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/node.json
-          datasource: Prometheus
-        overview:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/overview.json
-          datasource: Prometheus
-        proxy:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/proxy.json
-          datasource: Prometheus
-        recovery:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/recovery.json
-          datasource: Prometheus
-        topic:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/topic.json
-          datasource: Prometheus
-        transaction:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/transaction.json
-          datasource: Prometheus
-        zookeeper:
-          url: https://raw.githubusercontent.com/streamnative/apache-pulsar-grafana-dashboard/master/dashboards.kubernetes/zookeeper-3.6.json
-          datasource: Prometheus
-        offloader:
-          url: https://raw.githubusercontent.com/apache/pulsar/refs/heads/master/grafana/dashboards/offloader.json
-          datasource: Prometheus
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/bookkeeper.json
+        broker-cache-by-broker:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/broker-cache-by-broker.json
         broker-cache:
-          url: https://raw.githubusercontent.com/datastax/pulsar-helm-chart/refs/heads/master/helm-chart-sources/pulsar/grafana-dashboards/broker-cache-by-broker.json
-          datasource: Prometheus
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/broker-cache.json
+        connector-sink:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/connector-sink.json
+        connector-source:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/connector-source.json
+        functions:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/functions.json
+        jvm:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/jvm.json
+        load-balancing:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/load-balancing.json
+        messaging:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/messaging.json
+        namespace:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/namespace.json
+        node:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/node.json
+        offloader:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/offloader.json
+        overview-by-broker:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/overview-by-broker.json
+        overview:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/overview.json
+        proxy:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/proxy.json
         sockets:
-          url: https://raw.githubusercontent.com/datastax/pulsar-helm-chart/refs/heads/master/helm-chart-sources/pulsar/grafana-dashboards/sockets.json
-          datasource: Prometheus
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/sockets.json
+        tenant:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/tenant.json
+        topic:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/topic.json
+        zookeeper:
+          url: https://raw.githubusercontent.com/lhotari/pulsar-grafana-dashboards/master/pulsar/zookeeper.json
   ## Prometheus node exporter component
   prometheus-node-exporter:
     enabled: true
