@@ -1492,6 +1492,16 @@ kube-prometheus-stack:
     # You can find out the actual password by running the following command:
     # kubectl get secret -l app.kubernetes.io/name=grafana -o=jsonpath="{.items[0].data.admin-password}" | base64 --decode
     adminPassword:
+    persistence:
+      enabled: true
+      ## Size of the volume
+      size: 1Gi
+      ## Use a StorageClass from your cluster (replace with your preferred StorageClass)
+      # storageClassName: standard
+      ## Optional: Annotations for the PVC if needed
+      # annotations: {}
+      ## Optional: Extra labels to apply to a PVC.
+      # extraPvcLabels: {}
     # Configure Pulsar dashboards for Grafana
     dashboardProviders:
       dashboardproviders.yaml:
@@ -1501,11 +1511,12 @@ kube-prometheus-stack:
           orgId: 1
           folder: 'Pulsar'
           type: file
-          disableDeletion: true
+          disableDeletion: false
           editable: true
           options:
             path: /var/lib/grafana/dashboards/pulsar
     dashboards:
+      # Pulsar dashboards
       pulsar:
         # Download the maintained dashboards from AL 2.0 licenced repo https://github.com/streamnative/apache-pulsar-grafana-dashboard
         bookkeeper:
