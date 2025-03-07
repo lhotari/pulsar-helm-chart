@@ -32,7 +32,7 @@ spec:
   jobLabel: proxy
   fallbackScrapeProtocol: PrometheusText0.0.4
   podMetricsEndpoints:
-    - port: http
+    - port: sts-http
       path: /metrics
       scheme: http
       interval: {{ $.Values.proxy.podMonitor.interval }}
