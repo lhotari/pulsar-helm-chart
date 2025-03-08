@@ -33,6 +33,7 @@ spec:
   scrapeProtocols:
     - OpenMetricsText1.0.0
   fallbackScrapeProtocol: OpenMetricsText1.0.0
+  scrapeClassicHistograms: true
   podMetricsEndpoints:
     - port: sts-http
       path: /metrics

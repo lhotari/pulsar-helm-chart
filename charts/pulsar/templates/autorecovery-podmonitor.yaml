@@ -33,6 +33,7 @@ spec:
   scrapeProtocols:
     - PrometheusText0.0.4  
   fallbackScrapeProtocol: PrometheusText0.0.4
+  scrapeClassicHistograms: true
   podMetricsEndpoints:
     - port: http
       path: /metrics
