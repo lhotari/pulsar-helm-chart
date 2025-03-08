@@ -30,7 +30,9 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   jobLabel: proxy
-  fallbackScrapeProtocol: PrometheusText1.0.0
+  scrapeProtocols:
+    - OpenMetricsText1.0.0
+  fallbackScrapeProtocol: OpenMetricsText1.0.0
   podMetricsEndpoints:
     - port: sts-http
       path: /metrics

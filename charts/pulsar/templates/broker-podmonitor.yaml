@@ -30,7 +30,9 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   jobLabel: broker
-  fallbackScrapeProtocol: PrometheusText1.0.0
+  scrapeProtocols:
+    - OpenMetricsText1.0.0
+  fallbackScrapeProtocol: OpenMetricsText1.0.0
   podMetricsEndpoints:
     - port: http
       path: /metrics
