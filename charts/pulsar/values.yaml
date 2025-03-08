@@ -1485,6 +1485,22 @@ kube-prometheus-stack:
   ## Prometheus component
   prometheus:
     enabled: true
+    ## Settings affecting prometheusSpec
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#prometheusspec
+    ##
+    prometheusSpec:
+      ## Log level for Prometheus
+      # logLevel: info
+      ## Log format for Prometheus
+      # logFormat: logfmt    
+      ##
+      ## File to which scrape failures are logged.
+      ## Reloading the configuration will reopen the file.
+      ## Defaults to empty (disabled)
+      ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.Prometheus
+      ## The Prometheus Pods will mount the file into an emptyDir volume at /var/log/prometheus
+      ## /dev/stdout and /dev/stderr are available for logging to the container console.
+      # scrapeFailureLogFile: "scrape_failures.log"
   ## Grafana component
   grafana:
     enabled: true
