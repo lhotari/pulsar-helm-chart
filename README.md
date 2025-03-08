@@ -378,7 +378,7 @@ in kube-prometheus-stack upgrade notes](https://github.com/prometheus-community/
 There's a script to run the required commands:
 
 ```shell
-./scripts/kube-prometheus-stack/upgrade_prometheus_operator_crds.sh 0.80.0
+./scripts/kube-prometheus-stack/upgrade_prometheus_operator_crds.sh 0.80.1
 ```
 
 After, this you can proceed with `helm upgrade`.
