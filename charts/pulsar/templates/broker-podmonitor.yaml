@@ -36,7 +36,7 @@ spec:
   scrapeClassicHistograms: true
   podMetricsEndpoints:
     - port: http
-      path: /metrics
+      path: /metrics/
       scheme: http
       interval: {{ $.Values.broker.podMonitor.interval }}
       scrapeTimeout: {{ $.Values.broker.podMonitor.scrapeTimeout }}
