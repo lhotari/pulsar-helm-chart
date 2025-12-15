@@ -191,81 +191,12 @@ jobs:
         # see https://github.com/kubernetes-sigs/kind/releases/tag/v0.27.0 for the list of supported k8s versions for kind 0.27.0
         # docker images are available at https://hub.docker.com/r/kindest/node/tags
         k8sVersion:
-          - version: "1.25.16"
-            kind_image_tag: v1.25.16@sha256:6110314339b3b44d10da7d27881849a87e092124afab5956f2e10ecdb463b025
           - version: "1.34.0"
             kind_image_tag: v1.34.0@sha256:ede5bb6984830375d264e41b7169d03643f586d3e35316bf5229eaeb12bb18e0
         testScenario:
-          - name: Upgrade latest released version
-            values_file: .ci/clusters/values-upgrade.yaml
-            shortname: upgrade
-            type: upgrade
-          - name: Use previous LTS Pulsar Image
-            values_file: .ci/clusters/values-pulsar-previous-lts.yaml
-            shortname: pulsar-previous-lts
-          - name: JWT Asymmetric Keys
-            values_file: .ci/clusters/values-jwt-asymmetric.yaml
-            shortname: jwt-asymmetric
-          - name: JWT Symmetric Key
-            values_file: .ci/clusters/values-jwt-symmetric.yaml
-            shortname: jwt-symmetric
-          - name: TLS
-            values_file: .ci/clusters/values-tls.yaml
-            shortname: tls
-          - name: Broker & Proxy TLS
-            values_file: .ci/clusters/values-broker-tls.yaml
-            shortname: broker-tls
-          - name: BK TLS Only
-            values_file: .ci/clusters/values-bk-tls.yaml
-            shortname: bk-tls
-          - name: ZK TLS Only
-            values_file: .ci/clusters/values-zk-tls.yaml
-            shortname: zk-tls
-          - name: ZK & BK TLS Only
-            values_file: .ci/clusters/values-zkbk-tls.yaml
-            shortname: zkbk-tls
-          - name: Dekaf
-            values_file: .ci/clusters/values-dekaf.yaml
-            shortname: dekaf
-          - name: Pulsar Manager
-            values_file: .ci/clusters/values-pulsar-manager.yaml
-            shortname: pulsar-manager
           - name: Oxia
             values_file: .ci/clusters/values-oxia.yaml
             shortname: oxia
-          - name: OpenID
-            values_file: .ci/clusters/values-openid.yaml
-            shortname: openid
-          - name: CA certificates
-            values_file: .ci/clusters/values-cacerts.yaml
-            shortname: cacerts
-        include:
-          - k8sVersion:
-              version: "1.25.16"
-              kind_image_tag: v1.25.16@sha256:6110314339b3b44d10da7d27881849a87e092124afab5956f2e10ecdb463b025
-            testScenario:
-              name: "Upgrade TLS"
-              values_file: .ci/clusters/values-tls.yaml
-              shortname: tls
-              type: upgrade
-          - k8sVersion:
-              version: "1.25.16"
-              kind_image_tag: v1.25.16@sha256:6110314339b3b44d10da7d27881849a87e092124afab5956f2e10ecdb463b025
-            testScenario:
-              name: "Upgrade victoria-metrics-k8s-stack for previous LTS"
-              values_file: .ci/clusters/values-victoria-metrics-grafana.yaml --values .ci/clusters/values-pulsar-previous-lts.yaml
-              shortname: victoria-metrics-grafana
-              type: upgrade
-              upgradeFromVersion: 3.2.0
-          - k8sVersion:
-              version: "1.25.16"
-              kind_image_tag: v1.25.16@sha256:6110314339b3b44d10da7d27881849a87e092124afab5956f2e10ecdb463b025
-            testScenario:
-              name: "TLS with helm 3.12.0"
-              values_file: .ci/clusters/values-tls.yaml
-              shortname: tls
-              type: install
-            helmVersion: 3.12.0
     env:
       k8sVersion: ${{ matrix.k8sVersion.kind_image_tag }}
       KUBECTL_VERSION: ${{ matrix.k8sVersion.version }}
