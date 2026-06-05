@@ -144,11 +144,11 @@ components:
   dekaf: false
 
 # default image repository for pulsar images
-defaultPulsarImageRepository: apachepulsar/pulsar-all
+defaultPulsarImageRepository: lhotari/pulsar-all
 
 # default image tag for pulsar images
 # uses chart's appVersion when unspecified
-defaultPulsarImageTag:
+defaultPulsarImageTag: 4.2.2-b07e362
 
 # default pull policy for all images
 defaultPullPolicy: IfNotPresent
